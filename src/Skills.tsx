@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import { SKILL_LIST } from './consts';
-import { calcModifier, calcTotalSkillPoints } from './helpers';
+import { calcModifier } from './helpers';
 
 function Skills({ attrs, skills, changeSkill, skillPoints }) {
   return (

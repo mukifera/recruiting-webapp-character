@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-import Attribute from './Attribute';
-import { ATTRIBUTE_LIST, CLASS_LIST } from './consts';
+import { CLASS_LIST } from './consts';
 
 function Class({ className }) {
 

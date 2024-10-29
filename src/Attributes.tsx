@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
 import Attribute from './Attribute';
-import { ATTRIBUTE_LIST } from './consts';
 
 function Attributes({ attrs, updateAttr }) {
 

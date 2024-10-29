@@ -1,8 +1,4 @@
-import { useState } from 'react';
 import './App.css';
-import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
-import Attributes from './Attributes';
-import Classes from './Classes';
 import Character from './Character';
 
 
