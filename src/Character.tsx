@@ -3,9 +3,11 @@ import Attribute from './Attribute';
 import { ATTRIBUTE_LIST, CLASS_LIST } from './consts';
 import Attributes from './Attributes';
 import Classes from './Classes';
+import Class from './Class';
 
 function Character() {
   const [attrs, setAttrs] = useState({})
+  const [selectedClass, setSelectedClass] = useState(null)
 
   useEffect(() => {
     const initial_attrs = {};
@@ -22,7 +24,8 @@ function Character() {
         newState[attr] = prevState[attr] + change;
         return newState;
       })}/>
-      <Classes attrs={attrs}/>
+      <Classes attrs={attrs} setSelected={setSelectedClass}/>
+      {!!selectedClass && <Class className={selectedClass}/>}
     </>
   );
 }

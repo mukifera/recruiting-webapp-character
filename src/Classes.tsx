@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 import Attribute from './Attribute';
 import { ATTRIBUTE_LIST, CLASS_LIST } from './consts';
 
-function Classes({ attrs }) {
+function Classes({ attrs, setSelected }) {
 
   const doesApply = (className) => 
     Object.keys(CLASS_LIST[className]).reduce(
       (res, attr) => res && attrs[attr] >= CLASS_LIST[className][attr],
       true
     );
-
 
   return (
     <ul>
@@ -19,6 +18,7 @@ function Classes({ attrs }) {
           style={{
             color: doesApply(className) ? "green" : "inherit"
           }}
+          onClick={() => setSelected(className)}
         >
           {className}
         </li>
