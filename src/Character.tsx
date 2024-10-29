@@ -4,6 +4,7 @@ import { ATTRIBUTE_LIST, CLASS_LIST } from './consts';
 import Attributes from './Attributes';
 import Classes from './Classes';
 import Class from './Class';
+import Skills from './Skills';
 
 function Character() {
   const [attrs, setAttrs] = useState({})
@@ -26,6 +27,7 @@ function Character() {
       })}/>
       <Classes attrs={attrs} setSelected={setSelectedClass}/>
       {!!selectedClass && <Class className={selectedClass}/>}
+      <Skills attrs={attrs}/>
     </>
   );
 }

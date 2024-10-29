@@ -6,7 +6,7 @@ function Class({ className }) {
 
   return (
     <div>
-      {className} class
+      <h4>{className} class</h4>
       <ul>
         {Object.keys(CLASS_LIST[className]).map((attr, index) => 
           <li key={index}>

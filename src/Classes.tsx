@@ -11,19 +11,23 @@ function Classes({ attrs, setSelected }) {
     );
 
   return (
-    <ul>
-      {Object.keys(CLASS_LIST).map((className, index) => 
-        <li
-          key={index}
-          style={{
-            color: doesApply(className) ? "green" : "inherit"
-          }}
-          onClick={() => setSelected(className)}
-        >
-          {className}
-        </li>
-      )}
-    </ul>
+    <div>
+      <h3>Classes</h3>
+      <ul>
+        {Object.keys(CLASS_LIST).map((className, index) => 
+          <li
+            key={index}
+            style={{
+              color: doesApply(className) ? "green" : "inherit"
+            }}
+            onClick={() => setSelected(className)}
+          >
+            {className}
+          </li>
+        )}
+      </ul>
+
+    </div>
   );
 }
 
