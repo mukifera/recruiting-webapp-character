@@ -43,8 +43,51 @@ function Character() {
     setSkillPoints((prevState) => prevState - change)
   }
 
+  const saveCharacter = async () => {
+    try {
+      const response = await fetch("https://recruiting.verylongdomaintotestwith.ca/api/{mukifera}/character", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          attrs: attrs,
+          skills: skills
+        })
+      })
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`)
+      }
+
+
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  const loadCharacter = async () => {
+    try {
+      const response = await fetch("https://recruiting.verylongdomaintotestwith.ca/api/{mukifera}/character", {
+        headers: {
+          "Content-Type": "application/json"
+        },
+      })
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`)
+      }
+      const json = await response.json()
+      setAttrs(json.body.attrs)
+      setSkills(json.body.skills)
+
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
   return (
     <>
+      <button onClick={() => loadCharacter()}>Load Character</button>
+      <button onClick={() => saveCharacter()}>Save Character</button>
       <Attributes attrs={attrs} updateAttr={(attr, change) => setAttrs((prevState) => {
         const newState = {...prevState}
         newState[attr] = Math.max(0, prevState[attr] + change)
