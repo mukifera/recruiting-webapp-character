@@ -7,7 +7,13 @@ import Skills from './Skills';
 import { calcTotalSkillPoints } from './helpers';
 
 function Character() {
-  const [attrs, setAttrs] = useState({})
+  const [attrs, setAttrs] = useState(() => {
+    const initial_attrs = {};
+    ATTRIBUTE_LIST.forEach((attr) => {
+      initial_attrs[attr] = 10
+    });
+    return initial_attrs
+  })
   const [selectedClass, setSelectedClass] = useState(null)
   const [skills, setSkills] = useState<Record<string,number>>(() => {
     const initial_skills = {};
@@ -16,20 +22,7 @@ function Character() {
     })
     return initial_skills
   })
-  const [skillPoints, setSkillPoints] = useState<number>(() => calcTotalSkillPoints(attrs))
-
-  useEffect(() => {
-    const sum = Object.values(skills).reduce((total, value) => total + value, 0)
-    setSkillPoints(calcTotalSkillPoints(attrs) - sum)
-  }, [attrs])
-
-  useEffect(() => {
-    const initial_attrs = {};
-    ATTRIBUTE_LIST.forEach((attr) => {
-      initial_attrs[attr] = 10
-    });
-    setAttrs(initial_attrs)
-  }, [])
+  const skillPoints = calcTotalSkillPoints(attrs) - Object.values(skills).reduce((sum, value) => sum + value, 0);
 
   const changeSkill = (name, change) => {
     if (skillPoints - change < 0 || skills[name] + change < 0) {
@@ -40,7 +33,6 @@ function Character() {
       newState[name] = Math.max(prevState[name] + change, 0)
       return newState
     })
-    setSkillPoints((prevState) => prevState - change)
   }
 
   const saveCharacter = async () => {
