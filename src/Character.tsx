@@ -47,7 +47,7 @@ function Character() {
     <>
       <Attributes attrs={attrs} updateAttr={(attr, change) => setAttrs((prevState) => {
         const newState = {...prevState}
-        newState[attr] = prevState[attr] + change;
+        newState[attr] = Math.max(0, prevState[attr] + change)
         return newState;
       })}/>
       <Classes attrs={attrs} setSelected={setSelectedClass}/>
